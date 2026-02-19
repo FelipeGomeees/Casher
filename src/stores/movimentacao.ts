@@ -1,9 +1,9 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { getExtrato, type TransacaoDTO } from '@/services/extrato.service.ts'
+import { getMovimentacao, type MovimentacaoDTO } from '@/services/movimentacao.service'
 
-export const useExtratoStore = defineStore('extrato', () => {
-  const transacoes = ref<TransacaoDTO[]>([])
+export const useMovimentacaoStore = defineStore('Movimentacao', () => {
+  const transacoes = ref<MovimentacaoDTO[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
 
@@ -11,14 +11,14 @@ export const useExtratoStore = defineStore('extrato', () => {
     transacoes.value.reduce((acc, t) => acc + t.valor, 0)
   )
 
-  async function fetchExtrato() {
+  async function fetchMovimentacao() {
     loading.value = true
     error.value = null
 
     try {
-      transacoes.value = await getExtrato()
+      transacoes.value = await getMovimentacao()
     } catch (err) {
-      error.value = 'Não foi possível carregar o extrato'
+      error.value = 'Não foi possível carregar o Movimentacao'
     } finally {
       loading.value = false
     }
@@ -29,6 +29,6 @@ export const useExtratoStore = defineStore('extrato', () => {
     loading,
     error,
     saldo,
-    fetchExtrato
+    fetchMovimentacao
   }
 })

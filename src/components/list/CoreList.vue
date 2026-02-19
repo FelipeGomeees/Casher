@@ -1,15 +1,16 @@
 <script setup lang="ts">
-    import { ShoppingCartIcon } from '@heroicons/vue/24/outline';
+    import type { Component } from 'vue';
 
-    type listItem = {
-        title?: String,
-        value?: String,
-        description?: String,
+    export type ListItem = {
+        title?: string,
+        value?: string,
+        description?: string,
+        icon?: Component,
     }
 
     const props = defineProps({
         items: {
-            type: Array<listItem>,
+            type: Array<ListItem>,
             required: true,
         }
     })
@@ -20,15 +21,19 @@
         <div class="item-wrapper">
             <div :class="{ 'item': true, 'last-item': index === props.items.length - 1}" v-for="(item, index) in props.items" :key="index">
                 <div class="icon-wrapper">
-                    <ShoppingCartIcon class="icon"/>
+                    <component
+                        :is="item.icon"
+                        v-if="item.icon"
+                        class="icon"
+                    />
                 </div>
                 
                 <div class="item-content">
                     <div class="item-content-header">
-                        <b>{{item.title}}</b>
-                        <p>{{item.value}}</p>
+                        <b>{{item.title ?? ''}}</b>
+                        <p>{{item.value ?? ''}}</p>
                     </div>
-                    <p>{{item.description}}</p>
+                    <p>{{item.description ?? ''}}</p>
                 </div>
             </div>
         </div>
