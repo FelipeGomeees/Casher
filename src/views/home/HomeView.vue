@@ -5,22 +5,26 @@
     import CoreList from '@/components/list/CoreList.vue';
     import PaymentCard from './PaymentCard.vue';
 
-    import { useExtratoStore } from '@/stores/extratoStore';
+    import { useMovimentacaoStore } from '@/stores/movimentacao';
     import { computed, onMounted } from 'vue';
 
-    const extratoStore = useExtratoStore()
+    import { ShoppingCartIcon } from '@heroicons/vue/24/outline';
+
+    const movimentacaoStore = useMovimentacaoStore()
 
     onMounted(() => {
-        extratoStore.fetchExtrato()
+        movimentacaoStore.fetchMovimentacao()
     })
 
-    const items = computed(() => {
-        return extratoStore.transacoes.map((item) => {
+    const listItems = computed(() => {
+        return movimentacaoStore.transacoes.map((item) => {
             return {
+                title: item.local,
                 value: 'R$' + item.valor,
-                ...item
+                description:  `${item.metodoPagamento} • ${item.data}`,
+                icon: ShoppingCartIcon,
             }
-        })
+        }).slice(0, 4)
     })
 </script>
 
@@ -34,7 +38,7 @@
         <PaymentCard/>
     </CoreSection>
     <CoreSection label="Ultimos Gastos">
-        <CoreList :items="items"/>
+        <CoreList :items="listItems"/>
     </CoreSection>
 </template>
 

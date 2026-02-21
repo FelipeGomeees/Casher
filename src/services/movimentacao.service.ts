@@ -1,11 +1,12 @@
-export interface TransacaoDTO {
+export interface MovimentacaoDTO {
   id: string
-  descricao: string
+  local: string
   valor: number
+  metodoPagamento: string,
   data: string
 }
 
-export async function getExtrato(): Promise<TransacaoDTO[]> {
+export async function getMovimentacao(): Promise<MovimentacaoDTO[]> {
   const response = await fetch('/api/extrato')
 
   if (!response.ok) {
