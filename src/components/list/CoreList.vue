@@ -1,94 +1,39 @@
-<script setup lang="ts">
-    import type { Component } from 'vue';
-
-    export type ListItem = {
-        title?: string,
-        value?: string,
-        description?: string,
-        icon?: Component,
-    }
-
-    const props = defineProps({
-        items: {
-            type: Array<ListItem>,
-            required: true,
-        }
-    })
+<script setup lang="ts" generic="T">
+    const props = defineProps<{
+        items: T[]
+    }>()
 </script>
 
 <template>
-    <span class="options-container">
-        <div class="item-wrapper">
-            <div :class="{ 'item': true, 'last-item': index === props.items.length - 1}" v-for="(item, index) in props.items" :key="index">
-                <div class="icon-wrapper">
-                    <component
-                        :is="item.icon"
-                        v-if="item.icon"
-                        class="icon"
-                    />
-                </div>
-                
-                <div class="item-content">
-                    <div class="item-content-header">
-                        <b>{{item.title ?? ''}}</b>
-                        <p>{{item.value ?? ''}}</p>
-                    </div>
-                    <p>{{item.description ?? ''}}</p>
-                </div>
-            </div>
-        </div>
-    </span>
+    <ul class="list-container">
+        <li 
+          class="list-item"
+          v-for="(item, index) in props.items" 
+          :key="index">
+            <slot :item="item" :index="index"></slot>
+        </li>
+    </ul>
 </template>
 
 <style scoped>
-    .options-container {
-        border-radius: 8px;
-    }
-    .item {
-        height: 80px;
-        border-bottom: 1px solid rgb(187, 187, 187);
-        flex-shrink: 0;
-        padding: 5px;
-        display: flex;
-        align-items: center;
+    .list-container {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        border: var(--border-width-md) solid var(--border-color);
+        border-radius: var(--radius-lg);
     }
 
-    .last-item {
+    .list-item {
+        list-style: none;
+        margin: 0;
+
+        border-bottom: var(--border-width-md) solid var(--border-color);
+        padding: var(--padding-md);
+    }
+
+    .list-item:last-child {
         border: none;
-    }
-
-    .item-wrapper {
-        border: 1px solid rgb(187, 187, 187);
-        border-radius: 8px;
-    }
-
-    .item-content {
-        flex: 4;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        justify-content: space-between;
-        padding: 5px;
-    }
-
-    .item-content-header {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .icon-wrapper {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .icon {
-        color: rgb(53, 53, 53);
-        background-color: rgb(216, 216, 216);
-        padding: 15px;
-        border-radius: 100%;
-        width: 30px;
-        height: 30px;
     }
 </style>
