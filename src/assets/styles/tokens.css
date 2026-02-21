@@ -1,4 +1,29 @@
-:root {
-  --color-primary: rgb(69, 187, 0);
-  --color-border: rgb(187, 187, 187);
+ :root {
+  --color-primary:   rgb(69, 187, 0);
+  --color-secondary: rgb(178, 219, 155);
+  --color-thirdiary: rgb(222, 240, 212);
+  
+  --color-grey-400:  rgb(221, 221, 221);
+  --color-grey-500:  rgb(187, 187, 187);
+  --color-grey-600:  rgb(102, 102, 102);
+
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --border-width-md: 1px;
+
+  --padding-xs: 4px;
+  --padding-sm: 8px;
+  --padding-md: 12px;
+  --padding-lg: 16px;
+  --padding-xl: 20px;
+
+  /* */
+
+  --border-color:  var(--color-grey-500);
 }
