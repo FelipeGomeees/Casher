@@ -24,7 +24,6 @@ provide('activeGroup', {
 <style scoped>
     .button-group {
         display: inline-flex;
-        align-items: center;
         gap: var(--padding-lg);
     }
 </style>

@@ -1,9 +1,11 @@
 <script setup lang="ts">
-    import { CoreList, CoreSection, CoreRadioButton, CoreRadioGroup } from '@/components/core';
+    import { CoreList, CoreSection, CoreRadioButton, CoreRadioGroup, CoreIconButton } from '@/components/core';
 
     import { computed, onMounted, ref } from 'vue';
     import { useMovimentacaoStore } from '@/stores/movimentacao';
-    import { ShoppingCartIcon } from '@heroicons/vue/24/outline';
+    import { ShoppingCartIcon, FunnelIcon } from '@heroicons/vue/24/outline';
+
+    import ExtratoHeader from './ExtratoHeader.vue';
 
     import ItemExtrato, { type ListItemExtrato } 
       from '@/components/app/ItemExtrato.vue'
@@ -20,7 +22,15 @@
       year: 'numeric'
     })
 
-    const currentFilter = ref<string>('recentes')
+    const currentFilter = ref<string>('recentes');
+
+    const formattedValue = computed(() =>
+        new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(6000)
+    )
+      
 
 
     // Isso iria vir formatado de uma api, este codigo não pertence a uma versão final
@@ -49,12 +59,20 @@
 
 <template>
   <div>
-    <CoreSection label="Hístorico de Movimentações">
+    <ExtratoHeader/>
+    <CoreSection>
+      <div class="flex-between extrato-view__saldo-container">
+        <h2>Saldo Atual</h2>
+        <h2>{{formattedValue}}</h2>
+      </div>
+      <div class="flex-between">
         <CoreRadioGroup v-model="currentFilter">
           <CoreRadioButton value="recentes">Recentes</CoreRadioButton>
           <CoreRadioButton value="futuros">Futuros</CoreRadioButton>
           <CoreRadioButton value="todos">Todos</CoreRadioButton>
         </CoreRadioGroup>
+        <CoreIconButton :icon="FunnelIcon"/>
+      </div>
     </CoreSection>
     <CoreSection>
       <div
@@ -73,4 +91,13 @@
 </template>
 
 <style scoped>
+ .extrato-view__saldo-container {
+    margin-block: var(--margin-labelx2);
+ }
+ /* ... */
+ .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
 </style>

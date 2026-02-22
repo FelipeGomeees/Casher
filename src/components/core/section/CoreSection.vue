@@ -9,14 +9,14 @@
 
 <template>
     <section class="section">
-       <span class="section__label">
+       <div class="section__label">
             <b>{{props.label}}</b>
             <a class="section__label-link">
                 <span>{{props.linkLabel}}</span>
                 <ArrowRightIcon class="icon"
                 v-if="props.linkLabel"/>
             </a>
-        </span>
+        </div>
         <div class="section__content">
             <slot>
             </slot>
