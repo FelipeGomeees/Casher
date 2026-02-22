@@ -1,8 +1,8 @@
 <script setup lang="ts">
+    import { CoreList, CoreSection } from '@/components/core';
+
     import ShortcutSlider from './ShortcutSlider.vue';
-    import CoreSection from '@/components/section/CoreSection.vue';
     import HomeHeader from './HomeHeader.vue';
-    import CoreList from '@/components/list/CoreList.vue';
     import PaymentCard from './PaymentCard.vue';
     import ItemExtrato from '@/components/app/ItemExtrato.vue';
 
@@ -22,7 +22,7 @@
         .slice(0, 4)
         .map((item) => {
             return {
-                title: item.local.toUpperCase(),
+                title: item.local,
                 value: item.valor,
                 description:  `${item.metodoPagamento} • ${item.data}`,
                 icon: ShoppingCartIcon,
