@@ -13,7 +13,8 @@
             <b>{{props.label}}</b>
             <a class="section__label-link">
                 <span>{{props.linkLabel}}</span>
-                <ArrowRightIcon class="icon"/>
+                <ArrowRightIcon class="icon"
+                v-if="props.linkLabel"/>
             </a>
         </span>
         <div class="section__content">
