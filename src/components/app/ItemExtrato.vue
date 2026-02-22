@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { computed, type Component } from 'vue';
 
-    export type ListItem = {
+    export type ListItemExtrato  = {
         title?: string,
         value?: number,
         description?: string,
@@ -9,7 +9,7 @@
     }
 
     const props = defineProps<{
-        item: ListItem
+        item: ListItemExtrato 
     }>()
 
     const isPositive = computed(() => {
