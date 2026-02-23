@@ -8,6 +8,6 @@
 
 <style scoped>
     :deep(.icon-button) {
-        background-color: var(--color-thirdiary);
+        background-color: var(--color-grey-300)
     }
 </style>

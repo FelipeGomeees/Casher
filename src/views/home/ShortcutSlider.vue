@@ -7,30 +7,32 @@
 
 <template>
     <span class="options-container">
-        <a class="options" href="/extrato">
+        <RouterLink class="options" to="/extrato">
             <BanknotesIcon class="icon"/>
-            <b>Extrato Financeiro</b>
-        </a>
-        <div class="options">
+            <span>Extrato</span>
+        </RouterLink>
+        <RouterLink class="options" to="/extrato">
             <CreditCardIcon class="icon"/>
-            <b>Método de Pagamentos</b>
-        </div>
-        <div class="options">
+            <span>Método de Pagamentos</span>
+        </RouterLink>
+        <RouterLink class="options" to="/extrato">
             <ChartPieIcon class="icon"/>
-            <b>Estatísticas</b>
-        </div>
-        <div class="options">
+            <span>Estatísticas</span>
+        </RouterLink>
+        <RouterLink class="options" to="/extrato">
             <FlagIcon class="icon"/>
-            <b>Metas</b>
-        </div>
+            <span>Metas</span>
+        </RouterLink>
     </span>
 </template>
 
 <style scoped>
     .options-container {
         display: flex;
-        overflow: scroll;
+        overflow-x: auto;
+        overflow-y: visible;
         scroll-behavior: smooth;
+        gap: 8px;
     }
     .options {
         border: 1px solid rgb(187, 187, 187);
@@ -43,6 +45,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
+        z-index: 2;
     }
 
     .icon {

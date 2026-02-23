@@ -35,7 +35,7 @@
 <template>
     <HomeHeader/>
 
-    <CoreSection label="Acesso Rápido">
+    <CoreSection label="Acesso Rápido" linkLabel="Ver todos">
         <ShortcutSlider/>
     </CoreSection>
     <CoreSection label="Métodos de Pagamento">

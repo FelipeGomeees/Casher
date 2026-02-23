@@ -16,17 +16,11 @@
 
 <style scoped>
     .page__header {
-        background-color: var(--color-secondary);
+        background-color: var(--color-thirdiary);
         padding-top: var(--padding-md);
-        position: fixed;
+        position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
-        height: var(--header-height);
+        min-height: var(--header-height);
         z-index: 1000;
-    }
-
-    .page__content {
-        padding-top: var(--header-height);
     }
 </style>

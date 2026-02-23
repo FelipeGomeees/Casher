@@ -70,9 +70,10 @@
 
     .item-extrato__icon {
         color: var(--color-grey-600);
-        background-color: var(--color-thirdiary);
+        background-color: var(--color-grey-400);
         padding: var(--padding-md);
         border-radius: 100%;
+        color: black;
         width: 25px;
         height: 25px;
     }
@@ -87,6 +88,11 @@
     .item-extrato__content-header {
         display: flex;
         justify-content: space-between;
+    }
+
+    .item-extrato__content-header b {
+        text-wrap: wrap;
+        padding-right: var(--padding-lg);
     }
 
     .list-content__header {
