@@ -1,79 +1,103 @@
 <script setup lang="ts">
-    // import CoreSection from '@/components/section/CoreSection.vue';
-    // import CoreList from '@/components/list/CoreList.vue';
-    // import { computed } from 'vue';
+    import { CoreList, CoreSection, CoreRadioButton, CoreRadioGroup, CoreIconButton } from '@/components/core';
 
-    // const groupedByDate = computed(() => {
-    //     return items.reduce((acc, item) => {
-    //         if (!acc[item.date]) {
-    //             acc[item.date] = []
-    //         }
-    //         acc[item.date].push(item)
-    //         return acc
-    //     }, {} as Record<string, typeof items>)
-    // })
+    import { computed, onMounted, ref } from 'vue';
+    import { useMovimentacaoStore } from '@/stores/movimentacao';
+    import { ShoppingCartIcon, FunnelIcon } from '@heroicons/vue/24/outline';
 
-    // const formatDate = (date: string) => {
-    //     return new Date(date).toLocaleDateString('pt-BR')
-    // }
+    import ExtratoHeader from './ExtratoHeader.vue';
 
-    // const items = [
-    // {
-    //     title: 'Hello',
-    //     value: 'R$ 50.00',
-    //     description: 'PIX',
-    //     date: '2026-02-18'
-    // },
-    // {
-    //     title: 'Hello',
-    //     value: 'R$ 30.00',
-    //     description: 'Cartão',
-    //     date: '2026-02-18'
-    // },
-    // {
-    //     title: 'Hello',
-    //     value: 'R$ 100.00',
-    //     description: 'TED',
-    //     date: '2026-02-17'
-    // },
-    //     {
-    //     title: 'Hello',
-    //     value: 'R$ 100.00',
-    //     description: 'TED',
-    //     date: '2026-02-16'
-    // },
-    //     {
-    //     title: 'Hello',
-    //     value: 'R$ 100.00',
-    //     description: 'TED',
-    //     date: '2026-02-16'
-    // },
-    //     {
-    //     title: 'Hello',
-    //     value: 'R$ 100.00',
-    //     description: 'TED',
-    //     date: '2026-02-16'
-    // },
-    // ]
+    import ItemExtrato, { type ListItemExtrato } 
+      from '@/components/app/ItemExtrato.vue'
+  
+    const movimentacaoStore = useMovimentacaoStore()
 
-    /*
-      <CoreSection label="Extrato">
-    <div class="date-section" v-for="(group, date) in groupedByDate" :key="date">
-      <b>{{ formatDate(date) }}</b>
-      <CoreList :items="group" />
-    </div>
-  </CoreSection>
-    */
+    onMounted(() => {
+        movimentacaoStore.fetchMovimentacao()
+    })
+
+    const dateFormatter = new Intl.DateTimeFormat('pt-BR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    })
+
+    const currentFilter = ref<string>('recentes');
+
+    const formattedValue = computed(() =>
+        new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(6000)
+    )
+      
+
+
+    // Isso iria vir formatado de uma api, este codigo não pertence a uma versão final
+    const groupedByDate = computed(() => {
+      const grouped: Record<string, ListItemExtrato[]> = {}
+
+      movimentacaoStore.transacoes.forEach((item) => {
+        const rawDate = new Date(item.data)
+        const formattedDate = dateFormatter.format(rawDate)
+
+        if (!grouped[formattedDate]) {
+          grouped[formattedDate] = []
+        }
+
+        grouped[formattedDate].push({
+          title: item.local.toUpperCase(),
+          value: item.valor,
+          description: `${item.metodoPagamento} • ${item.data}`,
+          icon: ShoppingCartIcon,
+        })
+      })
+
+      return grouped
+    })
 </script>
 
 <template>
-<div>
-
-</div>
+  <div>
+    <ExtratoHeader/>
+    <CoreSection>
+      <div class="flex-between extrato-view__saldo-container">
+        <h2>Saldo Atual</h2>
+        <h2>{{formattedValue}}</h2>
+      </div>
+      <div class="flex-between">
+        <CoreRadioGroup v-model="currentFilter">
+          <CoreRadioButton value="recentes">Recentes</CoreRadioButton>
+          <CoreRadioButton value="futuros">Futuros</CoreRadioButton>
+          <CoreRadioButton value="todos">Todos</CoreRadioButton>
+        </CoreRadioGroup>
+        <CoreIconButton :icon="FunnelIcon"/>
+      </div>
+    </CoreSection>
+    <CoreSection>
+      <div
+        class="date-section"
+        v-for="(items, date) in groupedByDate"
+        :key="date"
+      >
+        <CoreSection :label="date">
+          <CoreList :items="items" v-slot="{ item }">
+            <ItemExtrato :item="item"/>
+          </CoreList>
+        </CoreSection>
+      </div>
+    </CoreSection>
+  </div>
 </template>
 
 <style scoped>
-    .date-section {
-        padding-bottom: 20px;
-    }
+ .extrato-view__saldo-container {
+    margin-block: var(--margin-labelx2);
+ }
+ /* ... */
+ .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
 </style>
