@@ -9,27 +9,36 @@
 
 <template>
     <div class="header__container">
-        <RouterLink
-        class="header__link"
-        :to="props.to"
-        >
-            <ChevronLeftIcon class="header__icon" />
-            <span>
-                <slot name="title" />
-            </span>
-        </RouterLink>
+        <div class="header__main">
+            <RouterLink
+            class="header__link"
+            :to="props.to"
+            >
+                <ChevronLeftIcon class="header__icon" />
+                <span>
+                    <slot name="title" />
+                </span>
+            </RouterLink>
 
-        <ul class="header__actions">
-            <slot name="actions" />
-        </ul>
+            <ul class="header__actions">
+                <slot name="actions" />
+            </ul>
+        </div>
+        <div class="header__content">
+            <slot name="content"></slot>
+        </div>
     </div>
 </template>
 
 <style scoped>
     .header__container {
         display: flex;
+        flex-direction: column;
+        padding-inline: var(--padding-md);    
+    }
+    .header__main {
+        display: flex;
         justify-content: space-between;
-        padding-inline: var(--padding-md);
     }
 
      .header__link{
@@ -37,11 +46,6 @@
         align-items: center;
         gap: var(--gap-md);
         white-space: nowrap;
-    }
-
-    .header__link:link, .header__link:visited, .header__link:hover, .header__link:active {
-      text-decoration: none;
-      color: inherit;
     }
 
     .header__icon {
