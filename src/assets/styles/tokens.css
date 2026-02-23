@@ -5,8 +5,9 @@
 
   --color-purple-300: rgb(240, 212, 235);
   --color-purple-400: rgb(219, 155, 211);
-  --color-purple-500: rgb(187, 0, 140);
+  --color-purple-500: rgb(247, 70, 202);
   
+  --color-grey-300: #fff3ff;
   --color-grey-400:  rgb(221, 221, 221);
   --color-grey-500:  rgb(187, 187, 187);
   --color-grey-600:  rgb(102, 102, 102);
@@ -36,6 +37,7 @@
   --icon-sm: 8px;
   --icon-md: 12px;
   --icon-lg: 16px;
+  --icon-lx: 20px;
 
   --header-height: 60px;
 

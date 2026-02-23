@@ -3,6 +3,7 @@ export interface MovimentacaoDTO {
   local: string
   valor: number
   metodoPagamento: string,
+  categoria: string,
   data: string
 }
 
