@@ -1,35 +1,32 @@
 <script setup lang="ts">
-    import LayoutHeader from '../header/LayoutHeader.vue';
 </script>
 
 <template>
-  <div class="layout">
-    <header class="layout-page__header">
-        <slot name="header">
-          <LayoutHeader/>
-        </slot>
-      <AppHeader />
-    </header>
+    <div class="page">
+        <header class="page__header">
+            <slot name="header">
+            </slot>
+        </header>
 
-    <main class="layout-page__content">
-      <slot name="page"/>
-    </main>
-  </div>
+        <main class="page__content">
+            <slot name="page"/>
+        </main>
+    </div>
 </template>
 
 <style scoped>
-    .layout-page__header {
-      background-color: var(--color-secondary);
-      padding-top: var(--padding-md);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      z-index: 1000;
+    .page__header {
+        background-color: var(--color-secondary);
+        padding-top: var(--padding-md);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--header-height);
+        z-index: 1000;
     }
 
-    .layout-page__content {
-      padding-top: 60px;
+    .page__content {
+        padding-top: var(--header-height);
     }
 </style>

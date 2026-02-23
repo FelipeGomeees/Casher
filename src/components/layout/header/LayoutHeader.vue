@@ -1,55 +1,55 @@
 <script setup lang="ts">
-import { RouterLink, type RouteLocationAsPath } from 'vue-router'
-import { ChevronLeftIcon } from '@heroicons/vue/24/outline'
+    import { RouterLink, type RouteLocationAsPath } from 'vue-router'
+    import { ChevronLeftIcon } from '@heroicons/vue/24/outline'
 
-const props = defineProps<{
-  to: RouteLocationAsPath
-}>()
+    const props = defineProps<{
+        to: RouteLocationAsPath
+    }>()
 </script>
 
 <template>
-  <div class="default-header__container">
-    <RouterLink
-      :to="props.to"
-      class="default-header__link"
-    >
-      <ChevronLeftIcon class="icon" />
-      <span>
-        <slot name="title" />
-      </span>
-    </RouterLink>
+    <div class="header__container">
+        <RouterLink
+        class="header__link"
+        :to="props.to"
+        >
+            <ChevronLeftIcon class="header__icon" />
+            <span>
+                <slot name="title" />
+            </span>
+        </RouterLink>
 
-    <ul class="default-header__actions">
-      <slot name="actions" />
-    </ul>
-  </div>
+        <ul class="header__actions">
+            <slot name="actions" />
+        </ul>
+    </div>
 </template>
 
 <style scoped>
-    .default-header__container {
+    .header__container {
         display: flex;
         justify-content: space-between;
         padding-inline: var(--padding-md);
-
     }
-     .default-header__link
-      {
+
+     .header__link{
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: var(--gap-md);
         white-space: nowrap;
     }
 
-    .default-header__link:link, .default-header__link:visited, .default-header__link:hover, .default-header__link:active {
+    .header__link:link, .header__link:visited, .header__link:hover, .header__link:active {
       text-decoration: none;
       color: inherit;
     }
 
-    .icon {
-        width: 16px;
-        height: 16px;
+    .header__icon {
+        width: var(--icon-md);
+        height: var(--icon-md);
     }
-    .default-header__actions {
+
+    .header__actions {
         list-style: none;
         display: inline-flex;
         gap: var(--padding-lg);

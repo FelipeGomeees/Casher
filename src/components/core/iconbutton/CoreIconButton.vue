@@ -15,7 +15,7 @@
 <style scoped>
     .icon-button {
         border-radius: 100%;
-        padding: var(--padding-md);
+        padding: var(--icon-sm);
 
         width: 25px;
         height: 25px;

@@ -67,8 +67,8 @@
         <template #page>
             <CoreSection>
                 <div class="flex-between extrato-view__saldo-container">
-                    <h2>Saldo Atual</h2>
-                    <h2>{{formattedValue}}</h2>
+                    <h3>Saldo Atual</h3>
+                    <h3>{{formattedValue}}</h3>
                 </div>
                 <div class="flex-between">
                     <CoreRadioGroup v-model="currentFilter">
