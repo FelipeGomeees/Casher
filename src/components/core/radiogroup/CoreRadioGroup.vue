@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import { provide } from 'vue'
+    import { provide } from 'vue'
 
-const props = defineProps<{
-  name?: string
-}>()
+    const props = defineProps<{
+        name?: string
+    }>()
 
-const model = defineModel<string>()
+    const model = defineModel<string>()
 
-const groupName = props.name ?? `group-${Math.random()}`
+    const groupName = props.name ?? `group-${Math.random()}`
 
-provide('activeGroup', {
-  model,
-  groupName,
-})
+    provide('activeGroup', {
+        model,
+        groupName,
+    })
 </script>
 
 <template>
-  <div class="button-group">
-    <slot />
-  </div>
+    <div class="radio-group">
+        <slot />
+    </div>
 </template>
 
 <style scoped>
-    .button-group {
+    .radio-group {
         display: inline-flex;
         gap: var(--padding-lg);
     }

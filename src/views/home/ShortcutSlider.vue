@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { BanknotesIcon } from '@heroicons/vue/24/outline';
-import { CreditCardIcon } from '@heroicons/vue/24/outline';
-import { ChartPieIcon } from '@heroicons/vue/24/outline';
-import { FlagIcon } from '@heroicons/vue/24/outline';
+    import { BanknotesIcon } from '@heroicons/vue/24/outline';
+    import { CreditCardIcon } from '@heroicons/vue/24/outline';
+    import { ChartPieIcon } from '@heroicons/vue/24/outline';
+    import { FlagIcon } from '@heroicons/vue/24/outline';
 </script>
 
 <template>
