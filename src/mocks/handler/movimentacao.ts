@@ -10,6 +10,7 @@ export const movimentacaoHandlers = [
         local: 'Junior Esfihas',
         valor: 250,
         metodoPagamento: 'PIX',
+        categoria: 'Receita',
         data: '2026-02-18'
       },
       {
@@ -17,6 +18,7 @@ export const movimentacaoHandlers = [
         local: 'Mercadão VL',
         valor: -120,
         metodoPagamento: 'PIX',
+        categoria: 'Alimentação',
         data: '2026-02-17'
       },
       {
@@ -24,6 +26,7 @@ export const movimentacaoHandlers = [
         local: 'Padaria Central',
         valor: -35.5,
         metodoPagamento: 'Débito',
+        categoria: 'Alimentação',
         data: '2026-02-18'
       },
       {
@@ -31,6 +34,7 @@ export const movimentacaoHandlers = [
         local: 'Salário Empresa X',
         valor: 3500,
         metodoPagamento: 'Transferência',
+        categoria: 'Salário',
         data: '2026-02-15'
       },
       {
@@ -38,6 +42,7 @@ export const movimentacaoHandlers = [
         local: 'Netflix',
         valor: -39.9,
         metodoPagamento: 'Crédito',
+        categoria: 'Assinaturas',
         data: '2026-02-14'
       },
       {
@@ -45,6 +50,7 @@ export const movimentacaoHandlers = [
         local: 'Uber',
         valor: -22.75,
         metodoPagamento: 'Crédito',
+        categoria: 'Transporte',
         data: '2026-02-17'
       },
       {
@@ -52,6 +58,7 @@ export const movimentacaoHandlers = [
         local: 'Farmácia São João',
         valor: -58.2,
         metodoPagamento: 'Débito',
+        categoria: 'Saúde',
         data: '2026-02-18'
       },
       {
@@ -59,6 +66,7 @@ export const movimentacaoHandlers = [
         local: 'Restaurante Sabor Caseiro',
         valor: -89.9,
         metodoPagamento: 'PIX',
+        categoria: 'Alimentação',
         data: '2026-02-16'
       },
       {
@@ -66,6 +74,7 @@ export const movimentacaoHandlers = [
         local: 'Freela Projeto Y',
         valor: 800,
         metodoPagamento: 'Transferência',
+        categoria: 'Freelance',
         data: '2026-02-16'
       },
       {
@@ -73,6 +82,7 @@ export const movimentacaoHandlers = [
         local: 'Amazon',
         valor: -199.99,
         metodoPagamento: 'Crédito',
+        categoria: 'Compras',
         data: '2026-02-15'
       },
       {
@@ -80,6 +90,7 @@ export const movimentacaoHandlers = [
         local: 'Academia FitLife',
         valor: -99.9,
         metodoPagamento: 'Débito automático',
+        categoria: 'Saúde',
         data: '2026-02-14'
       },
       {
@@ -87,6 +98,7 @@ export const movimentacaoHandlers = [
         local: 'Pix recebido João',
         valor: 120,
         metodoPagamento: 'PIX',
+        categoria: 'Receita',
         data: '2026-02-17'
       }
     ])
