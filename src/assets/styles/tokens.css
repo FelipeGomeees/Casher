@@ -1,7 +1,11 @@
  :root {
-  --color-primary:   rgb(69, 187, 0);
-  --color-secondary: rgb(178, 219, 155);
-  --color-thirdiary: rgb(222, 240, 212);
+  --color-green-300: rgb(222, 240, 212);
+  --color-green-400: rgb(178, 219, 155);
+  --color-green-500: rgb(69, 187, 0);
+
+  --color-purple-300: rgb(240, 212, 235);
+  --color-purple-400: rgb(219, 155, 211);
+  --color-purple-500: rgb(187, 0, 140);
   
   --color-grey-400:  rgb(221, 221, 221);
   --color-grey-500:  rgb(187, 187, 187);
@@ -29,7 +33,19 @@
   --margin-label: 12px;
   --margin-labelx2: 24px;
 
+  --icon-sm: 8px;
+  --icon-md: 12px;
+  --icon-lg: 16px;
+
+  --header-height: 60px;
+
+  --gap-md: 4px;
+
   /* */
+
+  --color-primary: var(--color-purple-500);
+  --color-secondary: var(--color-purple-400);
+  --color-thirdiary: var(--color-purple-300);
 
   --border-color:  var(--color-grey-500);
 }

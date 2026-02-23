@@ -7,9 +7,9 @@
 <template>
     <ul class="list-container">
         <li 
-          class="list-item"
-          v-for="(item, index) in props.items" 
-          :key="index">
+        class="list-item"
+        v-for="(item, index) in props.items" 
+        :key="index">
             <slot :item="item" :index="index"></slot>
         </li>
     </ul>

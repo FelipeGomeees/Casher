@@ -60,50 +60,50 @@
 </script>
 
 <template>
-  <LayoutPage>
-    <template #header>
-      <ExtratoHeader/>
-    </template>
-    <template #page>
-      <CoreSection>
-        <div class="flex-between extrato-view__saldo-container">
-          <h2>Saldo Atual</h2>
-          <h2>{{formattedValue}}</h2>
-        </div>
-        <div class="flex-between">
-          <CoreRadioGroup v-model="currentFilter">
-            <CoreRadioButton value="recentes">Recentes</CoreRadioButton>
-            <CoreRadioButton value="futuros">Futuros</CoreRadioButton>
-            <CoreRadioButton value="todos">Todos</CoreRadioButton>
-          </CoreRadioGroup>
-          <CoreIconButton :icon="FunnelIcon"/>
-        </div>
-      </CoreSection>
-      <CoreSection>
-        <div
-          class="date-section"
-          v-for="(items, date) in groupedByDate"
-          :key="date"
-        >
-          <CoreSection :label="date">
-            <CoreList :items="items" v-slot="{ item }">
-              <ItemExtrato :item="item"/>
-            </CoreList>
-          </CoreSection>
-        </div>
-      </CoreSection>
-    </template>
-  </LayoutPage>
+    <LayoutPage>
+        <template #header>
+            <ExtratoHeader/>
+        </template>
+        <template #page>
+            <CoreSection>
+                <div class="flex-between extrato-view__saldo-container">
+                    <h3>Saldo Atual</h3>
+                    <h3>{{formattedValue}}</h3>
+                </div>
+                <div class="flex-between">
+                    <CoreRadioGroup v-model="currentFilter">
+                        <CoreRadioButton value="recentes">Recentes</CoreRadioButton>
+                        <CoreRadioButton value="futuros">Futuros</CoreRadioButton>
+                        <CoreRadioButton value="todos">Todos</CoreRadioButton>
+                    </CoreRadioGroup>
+                    <CoreIconButton :icon="FunnelIcon"/>
+                </div>
+            </CoreSection>
+            <CoreSection>
+                <div
+                class="date-section"
+                v-for="(items, date) in groupedByDate"
+                :key="date"
+                >
+                    <CoreSection :label="date">
+                        <CoreList :items="items" v-slot="{ item }">
+                            <ItemExtrato :item="item"/>
+                        </CoreList>
+                    </CoreSection>
+                </div>
+            </CoreSection>
+        </template>
+    </LayoutPage>
 </template>
 
 <style scoped>
- .extrato-view__saldo-container {
-    margin-block: var(--margin-labelx2);
- }
- /* ... */
- .flex-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
- }
+    .extrato-view__saldo-container {
+        margin-block: var(--margin-labelx2);
+    }
+    /* ... */
+    .flex-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>
