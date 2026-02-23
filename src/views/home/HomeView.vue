@@ -29,6 +29,7 @@
             }
         })
     })
+
 </script>
 
 <template>
@@ -40,7 +41,7 @@
     <CoreSection label="Métodos de Pagamento">
         <PaymentCard/>
     </CoreSection>
-    <CoreSection label="Ultimos Gastos">
+    <CoreSection label="Ultimos Gastos" linkLabel="Ver mais">
         <CoreList :items="listItems" v-slot="{ item }">
             <ItemExtrato :item="item"/>
         </CoreList>
