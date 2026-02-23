@@ -1,5 +1,7 @@
 <script setup lang="ts">
     import { CoreList, CoreSection, CoreRadioButton, CoreRadioGroup, CoreIconButton } from '@/components/core';
+    import { LayoutPage } from '@/components/layout';
+
 
     import { computed, onMounted, ref } from 'vue';
     import { useMovimentacaoStore } from '@/stores/movimentacao';
@@ -58,36 +60,40 @@
 </script>
 
 <template>
-  <div>
-    <ExtratoHeader/>
-    <CoreSection>
-      <div class="flex-between extrato-view__saldo-container">
-        <h2>Saldo Atual</h2>
-        <h2>{{formattedValue}}</h2>
-      </div>
-      <div class="flex-between">
-        <CoreRadioGroup v-model="currentFilter">
-          <CoreRadioButton value="recentes">Recentes</CoreRadioButton>
-          <CoreRadioButton value="futuros">Futuros</CoreRadioButton>
-          <CoreRadioButton value="todos">Todos</CoreRadioButton>
-        </CoreRadioGroup>
-        <CoreIconButton :icon="FunnelIcon"/>
-      </div>
-    </CoreSection>
-    <CoreSection>
-      <div
-        class="date-section"
-        v-for="(items, date) in groupedByDate"
-        :key="date"
-      >
-        <CoreSection :label="date">
-          <CoreList :items="items" v-slot="{ item }">
-            <ItemExtrato :item="item"/>
-          </CoreList>
-        </CoreSection>
-      </div>
-    </CoreSection>
-  </div>
+  <LayoutPage>
+    <template #header>
+      <ExtratoHeader/>
+    </template>
+    <template #page>
+      <CoreSection>
+        <div class="flex-between extrato-view__saldo-container">
+          <h2>Saldo Atual</h2>
+          <h2>{{formattedValue}}</h2>
+        </div>
+        <div class="flex-between">
+          <CoreRadioGroup v-model="currentFilter">
+            <CoreRadioButton value="recentes">Recentes</CoreRadioButton>
+            <CoreRadioButton value="futuros">Futuros</CoreRadioButton>
+            <CoreRadioButton value="todos">Todos</CoreRadioButton>
+          </CoreRadioGroup>
+          <CoreIconButton :icon="FunnelIcon"/>
+        </div>
+      </CoreSection>
+      <CoreSection>
+        <div
+          class="date-section"
+          v-for="(items, date) in groupedByDate"
+          :key="date"
+        >
+          <CoreSection :label="date">
+            <CoreList :items="items" v-slot="{ item }">
+              <ItemExtrato :item="item"/>
+            </CoreList>
+          </CoreSection>
+        </div>
+      </CoreSection>
+    </template>
+  </LayoutPage>
 </template>
 
 <style scoped>

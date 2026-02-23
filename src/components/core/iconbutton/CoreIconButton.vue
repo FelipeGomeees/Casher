@@ -1,26 +1,24 @@
 <script setup lang="ts">
-import type { Component } from 'vue';
+import type { Component } from 'vue'
 
-const props = defineProps<{
-    icon: Component,
+defineProps<{
+  icon: Component
 }>()
 </script>
 
 <template>
-    <div class="icon">
-        <component
-            
-            :is="props.icon"
-        />
-    </div>
+  <div class="icon-button">
+    <component :is="icon" />
+  </div>
 </template>
 
 <style scoped>
-    .icon {
-        background-color: var(--color-grey-400);
-        padding: var(--padding-md);
-        border-radius: 100%;
-        width: 25px;
-        height: 25px;
-    }
+.icon-button {
+  border-radius: 100%;
+  padding: var(--padding-md);
+
+  width: 25px;
+  height: 25px;
+  background-color: var(--color-grey-400);
+}
 </style>
