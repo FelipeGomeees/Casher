@@ -5,12 +5,13 @@
 
     import { computed, onMounted, ref } from 'vue';
     import { useMovimentacaoStore } from '@/stores/movimentacao';
-    import { ShoppingCartIcon, FunnelIcon } from '@heroicons/vue/24/outline';
+    import { FunnelIcon } from '@heroicons/vue/24/outline';
 
     import ExtratoHeader from './ExtratoHeader.vue';
 
     import ItemExtrato, { type ListItemExtrato } 
       from '@/components/app/ItemExtrato.vue'
+import { getCategoryIcon } from '@/utils/categoryIcon';
   
     const movimentacaoStore = useMovimentacaoStore()
 
@@ -51,7 +52,7 @@
           title: item.local.toUpperCase(),
           value: item.valor,
           description: `${item.metodoPagamento} • ${item.data}`,
-          icon: ShoppingCartIcon,
+          icon: getCategoryIcon(item.categoria),
         })
       })
 
@@ -87,7 +88,9 @@
                 >
                     <CoreSection :label="date">
                         <CoreList :items="items" v-slot="{ item }">
-                            <ItemExtrato :item="item"/>
+                            <RouterLink to="/movimentacao">
+                                <ItemExtrato :item="item"/>
+                            </RouterLink>
                         </CoreList>
                     </CoreSection>
                 </div>
