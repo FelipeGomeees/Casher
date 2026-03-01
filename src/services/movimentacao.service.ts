@@ -5,6 +5,8 @@ export interface MovimentacaoDTO {
   metodoPagamento: string,
   categoria: string,
   data: string
+  status: string,
+  recorrente: boolean,
 }
 
 export async function getMovimentacao(): Promise<MovimentacaoDTO[]> {

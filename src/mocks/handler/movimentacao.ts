@@ -11,7 +11,9 @@ export const movimentacaoHandlers = [
         valor: 250,
         metodoPagamento: 'PIX',
         categoria: 'Receita',
-        data: '2026-02-18'
+        data: '2026-02-18',
+        status: 'confirmado',
+        recorrente: false
       },
       {
         id: '2',
@@ -19,7 +21,9 @@ export const movimentacaoHandlers = [
         valor: -120,
         metodoPagamento: 'PIX',
         categoria: 'Alimentação',
-        data: '2026-02-17'
+        data: '2026-02-17',
+        status: 'confirmado',
+        recorrente: false
       },
       {
         id: '3',
@@ -27,7 +31,9 @@ export const movimentacaoHandlers = [
         valor: -35.5,
         metodoPagamento: 'Débito',
         categoria: 'Alimentação',
-        data: '2026-02-18'
+        data: '2026-02-18',
+        status: 'confirmado',
+        recorrente: false
       },
       {
         id: '4',
@@ -35,7 +41,9 @@ export const movimentacaoHandlers = [
         valor: 3500,
         metodoPagamento: 'Transferência',
         categoria: 'Salário',
-        data: '2026-02-15'
+        data: '2026-02-05',
+        status: 'confirmado',
+        recorrente: true
       },
       {
         id: '5',
@@ -43,7 +51,9 @@ export const movimentacaoHandlers = [
         valor: -39.9,
         metodoPagamento: 'Crédito',
         categoria: 'Assinaturas',
-        data: '2026-02-14'
+        data: '2026-03-14',
+        status: 'agendado',
+        recorrente: true
       },
       {
         id: '6',
@@ -51,7 +61,9 @@ export const movimentacaoHandlers = [
         valor: -22.75,
         metodoPagamento: 'Crédito',
         categoria: 'Transporte',
-        data: '2026-02-17'
+        data: '2026-02-17',
+        status: 'confirmado',
+        recorrente: false
       },
       {
         id: '7',
@@ -59,7 +71,9 @@ export const movimentacaoHandlers = [
         valor: -58.2,
         metodoPagamento: 'Débito',
         categoria: 'Saúde',
-        data: '2026-02-18'
+        data: '2026-02-18',
+        status: 'confirmado',
+        recorrente: false
       },
       {
         id: '8',
@@ -67,7 +81,9 @@ export const movimentacaoHandlers = [
         valor: -89.9,
         metodoPagamento: 'PIX',
         categoria: 'Alimentação',
-        data: '2026-02-16'
+        data: '2026-02-16',
+        status: 'confirmado',
+        recorrente: false
       },
       {
         id: '9',
@@ -75,7 +91,9 @@ export const movimentacaoHandlers = [
         valor: 800,
         metodoPagamento: 'Transferência',
         categoria: 'Freelance',
-        data: '2026-02-16'
+        data: '2026-02-16',
+        status: 'confirmado',
+        recorrente: false
       },
       {
         id: '10',
@@ -83,7 +101,9 @@ export const movimentacaoHandlers = [
         valor: -199.99,
         metodoPagamento: 'Crédito',
         categoria: 'Compras',
-        data: '2026-02-15'
+        data: '2026-02-15',
+        status: 'confirmado',
+        recorrente: false
       },
       {
         id: '11',
@@ -91,7 +111,9 @@ export const movimentacaoHandlers = [
         valor: -99.9,
         metodoPagamento: 'Débito automático',
         categoria: 'Saúde',
-        data: '2026-02-14'
+        data: '2026-03-01',
+        status: 'agendado',
+        recorrente: true
       },
       {
         id: '12',
@@ -99,7 +121,59 @@ export const movimentacaoHandlers = [
         valor: 120,
         metodoPagamento: 'PIX',
         categoria: 'Receita',
-        data: '2026-02-17'
+        data: '2026-02-17',
+        status: 'confirmado',
+        recorrente: false
+      },
+      {
+        id: '13',
+        local: 'Aluguel',
+        valor: -1200,
+        metodoPagamento: 'Transferência',
+        categoria: 'Moradia',
+        data: '2026-03-05',
+        status: 'agendado',
+        recorrente: true
+      },
+      {
+        id: '14',
+        local: 'Conta de Luz',
+        valor: -210.45,
+        metodoPagamento: 'Débito automático',
+        categoria: 'Contas',
+        data: '2026-03-10',
+        status: 'agendado',
+        recorrente: true
+      },
+      {
+        id: '15',
+        local: 'Spotify',
+        valor: -21.9,
+        metodoPagamento: 'Crédito',
+        categoria: 'Assinaturas',
+        data: '2026-02-12',
+        status: 'confirmado',
+        recorrente: true
+      },
+      {
+        id: '16',
+        local: 'iFood',
+        valor: -74.6,
+        metodoPagamento: 'Crédito',
+        categoria: 'Alimentação',
+        data: '2026-02-19',
+        status: 'confirmado',
+        recorrente: false
+      },
+      {
+        id: '17',
+        local: 'Bônus Empresa X',
+        valor: 1200,
+        metodoPagamento: 'Transferência',
+        categoria: 'Salário',
+        data: '2026-03-20',
+        status: 'agendado',
+        recorrente: false
       }
     ])
   })
