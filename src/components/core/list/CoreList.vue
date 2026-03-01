@@ -30,7 +30,8 @@
         margin: 0;
 
         border-bottom: var(--border-width-md) solid var(--border-color);
-        padding: var(--padding-md);
+        padding-block: var(--padding-sm);
+        padding-inline: var(--padding-md);
     }
 
     .list-item:last-child {

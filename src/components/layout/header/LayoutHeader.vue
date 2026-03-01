@@ -1,33 +1,57 @@
 <script setup lang="ts">
     import { RouterLink, type RouteLocationAsPath } from 'vue-router'
     import { ChevronLeftIcon } from '@heroicons/vue/24/outline'
+    import { useRouter } from 'vue-router'
 
     const props = defineProps<{
-        to: RouteLocationAsPath
+        to?: RouteLocationAsPath
+        back?: boolean
     }>()
+
+    const router = useRouter()
+
+    function handleClick() {
+        if (props.back) {
+            router.back()
+        }
+    }
 </script>
 
 <template>
-    <div class="header__container">
-        <div class="header__main">
-            <RouterLink
-            class="header__link"
-            :to="props.to"
-            >
-                <ChevronLeftIcon class="header__icon" />
-                <span>
-                    <slot name="title" />
-                </span>
-            </RouterLink>
+  <div class="header__container">
+    <div class="header__main">
+      
+      <a
+        v-if="back"
+        class="header__link"
+        @click="handleClick"
+      >
+        <ChevronLeftIcon class="header__icon" />
+        <span>
+          <slot name="title" />
+        </span>
+      </a>
 
-            <ul class="header__actions">
-                <slot name="actions" />
-            </ul>
-        </div>
-        <div class="header__content">
-            <slot name="content"></slot>
-        </div>
+      <RouterLink
+        v-else
+        class="header__link"
+        :to="to!"
+      >
+        <ChevronLeftIcon class="header__icon" />
+        <span>
+          <slot name="title" />
+        </span>
+      </RouterLink>
+
+      <ul class="header__actions">
+        <slot name="actions" />
+      </ul>
     </div>
+
+    <div class="header__content">
+      <slot name="content" />
+    </div>
+  </div>
 </template>
 
 <style scoped>
