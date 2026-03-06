@@ -43,7 +43,7 @@ const isFloating = computed(() => {
       </select>
 
       <label
-        v-if="label"
+        v-if="props.label"
         class="select__label"
         :class="{ 'select__label--floating': isFloating }"
       >

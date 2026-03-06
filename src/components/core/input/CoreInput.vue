@@ -6,7 +6,7 @@ const model = defineModel<string>({ required: true })
 const props = defineProps<{
   label?: string
   error?: string
-  rows?: number
+  type?: string
 }>()
 
 const attrs = useAttrs()
@@ -19,15 +19,15 @@ const isFloating = computed(() => {
 </script>
 
 <template>
-  <div class="textarea">
+  <div class="input">
     <div
-      class="textarea__wrapper"
-      :class="{ 'textarea__wrapper--focused': isFocused }"
+      class="input__wrapper"
+      :class="{ 'input__wrapper--focused': isFocused }"
     >
-      <textarea
+      <input
         v-model="model"
-        class="textarea__field"
-        :rows="props.rows ?? 4"
+        :type="props.type ?? 'text'"
+        class="input__field"
         @focus="isFocused = true"
         @blur="isFocused = false"
         v-bind="attrs"
@@ -35,65 +35,56 @@ const isFloating = computed(() => {
 
       <label
         v-if="props.label"
-        class="textarea__label"
-        :class="{ 'textarea__label--floating': isFloating }"
+        class="input__label"
+        :class="{ 'input__label--floating': isFloating }"
       >
         {{ props.label }}
       </label>
     </div>
 
-    <span v-if="props.error" class="textarea__error">
+    <span v-if="props.error" class="input__error">
       {{ props.error }}
     </span>
   </div>
 </template>
 
 <style scoped>
-    .textarea__wrapper {
+    .input__wrapper {
         position: relative;
         border: var(--border-width-md) solid var(--border-color);
         border-radius: var(--radius-md);
-        padding: 20px 12px 6px 12px;
+        padding: 16px 12px 2px 12px;
         transition: border-color 0.2s ease;
     }
 
-    .textarea__wrapper--focused {
+    .input__wrapper--focused {
         border-color: var(--color-primary);
     }
 
-    .textarea__field {
+    .input__field {
         width: 100%;
         border: none;
         background: transparent;
         font-size: 16px;
-        resize: none;
-        line-height: 1.4;
     }
 
-    .textarea__field:focus {
+    .input__field:focus {
         outline: none;
         caret-color: var(--color-primary);
     }
 
-    .textarea__label {
+    .input__label {
         position: absolute;
         left: 12px;
-        top: 14px;
+        top: 10px;
         font-size: 16px;
         color: #666;
         pointer-events: none;
         transition: all 0.2s ease;
     }
 
-    .textarea__label--floating {
-        top: 4px;
+    .input__label--floating {
+        top: 2px;
         font-size: 12px;
-    }
-
-    .textarea__error {
-        display: block;
-        margin-top: 4px;
-        font-size: 12px;
-        color: var(--color-danger);
     }
 </style>
