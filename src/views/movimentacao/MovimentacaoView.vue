@@ -69,7 +69,7 @@
     .movimentacao-view__description-item {
         display: flex;
         align-items: center;
-        gap: var(--gap-md);
+        gap: var(--gap-sm);
     }
     .movimentacao-view__description {
         color: var(--color-primary);
