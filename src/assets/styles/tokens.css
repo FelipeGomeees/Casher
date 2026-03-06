@@ -45,7 +45,29 @@
 
   --header-height: 60px;
 
-  --gap-md: 4px;
+
+  /* GAP */
+
+  --gap-sx: 4px;
+  --gap-sm: 10px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-lx: 32px;
+
+  /* FONT-SIZE */
+
+  --font-size-sm: 0.85rem;
+  --font-size-md: 0.9rem;
+  --font-size-lg: 1rem;
+
+  /* SPACING */
+
+  --label-spacing: 0.5px;
+
+  /* WEIGHT */
+
+  --font-weight-sm: 250;
+  --font-weight-lg: 600;
 
   /* */
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { computed, type Component } from 'vue';
-import { RouterLink } from 'vue-router';
+    import { RouterLink } from 'vue-router';
 
     export type ListItemExtrato  = {
         title?: string,
