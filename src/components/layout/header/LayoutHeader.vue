@@ -68,7 +68,7 @@
      .header__link{
         display: inline-flex;
         align-items: center;
-        gap: var(--gap-md);
+        gap: var(--gap-sm);
         white-space: nowrap;
     }
 

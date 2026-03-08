@@ -1,20 +1,24 @@
 <script setup lang="ts">
-    import { CoreList, CoreSection, CoreRadioButton, CoreRadioGroup, CoreIconButton } from '@/components/core';
-    import { LayoutPage } from '@/components/layout';
-
-
     import { computed, onMounted, ref } from 'vue';
-    import { useMovimentacaoStore } from '@/stores/movimentacao/movimentacao';
-    import { FunnelIcon, PlusIcon } from '@heroicons/vue/24/outline';
+    import { FunnelIcon, PlusIcon, CheckCircleIcon, ArrowRightCircleIcon } from '@heroicons/vue/24/outline';
 
+    import { CoreList, CoreSection, CoreRadioButton, CoreRadioGroup, CoreIconButton, CoreDialog, CoreButton } from '@/components/core';
+    import { LayoutPage } from '@/components/layout';
+    import MovimentacaoForm from '../../domain/movimentacao/MovimentacaoForm.vue';
     import ExtratoHeader from './ExtratoHeader.vue';
-
     import ItemExtrato, { type ListItemExtrato } 
-      from '@/components/app/ItemExtrato.vue'
-    import { getCategoryIcon  } from '@/utils/categoryIcon';
-  
+    from '@/components/app/ItemExtrato.vue'
+
+    import { useMovimentacaoStore } from '@/stores/movimentacao/movimentacao'
+    import { getCategoryIcon } from '@/utils/categoryIcon'
+
     const movimentacaoStore = useMovimentacaoStore()
 
+    const isActiveDialogMovimentacao = ref(false);
+    const currentFilter = ref<string>('recentes');
+
+    const formMovimentacao = ref();
+  
     onMounted(() => {
         movimentacaoStore.fetchMovimentacao()
     })
@@ -25,7 +29,6 @@
       year: 'numeric'
     })
 
-    const currentFilter = ref<string>('recentes');
 
     const formattedValue = computed(() =>
         new Intl.NumberFormat('pt-BR', {
@@ -33,8 +36,6 @@
             currency: 'BRL'
         }).format(6000)
     )
-      
-
 
     // Isso iria vir formatado de uma api, este codigo não pertence a uma versão final
     const groupedByDate = computed(() => {
@@ -58,6 +59,20 @@
 
       return grouped
     })
+
+    const handleFilterButtonClick = async () => {
+        
+    }
+
+    const handleAddButtonClick = async () => {
+        isActiveDialogMovimentacao.value = !isActiveDialogMovimentacao.value;
+    }
+
+    const handleMovimentacaoSubmit = async (action: string) => {
+        if (action === 'close') isActiveDialogMovimentacao.value = false;
+
+        movimentacaoStore.submit(formMovimentacao.value);
+    }
 </script>
 
 <template>
@@ -77,7 +92,7 @@
                         <CoreRadioButton value="futuros">Futuros</CoreRadioButton>
                         <CoreRadioButton value="todos">Todos</CoreRadioButton>
                     </CoreRadioGroup>
-                    <CoreIconButton :icon="FunnelIcon"/>
+                    <CoreIconButton :icon="FunnelIcon" @click="handleFilterButtonClick"/>
                 </div>
             </CoreSection>
             <CoreSection>
@@ -93,7 +108,38 @@
                     </CoreSection>
                 </div>
             </CoreSection>
-            <CoreIconButton :icon="PlusIcon" class="extrato-view__add-button"/>
+            <CoreIconButton 
+            :icon="PlusIcon" 
+            class="extrato-view__add-button"
+            @click="handleAddButtonClick()"/>
+            <CoreDialog v-model="isActiveDialogMovimentacao">
+                <template #header>
+                    <h3>
+                        Nova Movimentação
+                    </h3>
+                </template>
+                <template #content>
+                    <MovimentacaoForm 
+                    class="extrato-view__movimentacao-form"
+                    v-model="formMovimentacao"/>
+                </template>
+                <template #actions>
+                    <CoreButton
+                    type="submit"
+                    variant="secondary"
+                    :icon="CheckCircleIcon"
+                    @click="handleMovimentacaoSubmit('save')">
+                        Salvar
+                    </CoreButton>
+                    <CoreButton
+                    type="submit"
+                    variant="primary"
+                    :icon="ArrowRightCircleIcon"
+                    @click="handleMovimentacaoSubmit('close')">
+                        Salvar e Voltar
+                    </CoreButton>
+                </template>
+            </CoreDialog>
         </template>
     </LayoutPage>
 </template>
@@ -113,5 +159,8 @@
         bottom: 20px;
         right: 20px;
         background-color: var(--color-secondary);
+    }
+    .extrato-view__movimentacao-form {
+        width: 80vw;
     }
 </style>
