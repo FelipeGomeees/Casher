@@ -6,9 +6,7 @@
 </script>
 
 <template>
-    <LayoutHeader :to="{
-        path: '/extrato',
-    }">
+    <LayoutHeader back>
         <template #title>
             <b>Movimentacao</b>
             <br/>

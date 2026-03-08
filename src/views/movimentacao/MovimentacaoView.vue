@@ -2,7 +2,7 @@
     import { CoreSection, CoreSurfaceStack } from '@/components/core';
     import { LayoutPage } from '@/components/layout';
     
-    import { useMovimentacaoStore } from '@/stores/movimentacao';
+    import { useMovimentacaoStore } from '@/stores/movimentacao/movimentacao';
     import { onMounted } from 'vue';
 
     import MovimentacaoHeader from './MovimentacaoHeader.vue';
