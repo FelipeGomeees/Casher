@@ -34,5 +34,5 @@ const categoryIconMap: Record<Categoria, Component> = {
 }
 
 export function getCategoryIcon(categoria: Categoria): Component {
-  return categoryIconMap[categoria] ?? 'QuestionMarkCircleIcon'
+  return categoryIconMap[categoria] ?? QuestionMarkCircleIcon
 }

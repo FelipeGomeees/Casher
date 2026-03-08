@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import { ArrowRightIcon } from '@heroicons/vue/16/solid';
+    import { RouterLink } from 'vue-router';
 
     const props = defineProps<{
         label?: string,
@@ -11,11 +12,12 @@
     <section class="section">
         <div class="section__label">
             <b>{{props.label}}</b>
-            <a class="section__label-link">
+            
+            <RouterLink to="/extrato" class="section__label-link">
                 <span>{{props.linkLabel}}</span>
                 <ArrowRightIcon class="section__icon"
                 v-if="props.linkLabel"/>
-            </a>
+            </RouterLink>
         </div>
         <div class="section__content">
             <slot>
