@@ -49,6 +49,7 @@ const classes = computed(() => [
 
     .core-button--primary {
         background-color: var(--color-primary);
+        border: 1px solid var(--color-primary);
         color: #fff;
     }
 
@@ -56,6 +57,7 @@ const classes = computed(() => [
         background-color: var(--color-grey-300);
         border: 1px solid var(--color-primary);
         color: var(--color-primary);
+        box-sizing: border-box;
     }
 
     .core-button--ghost {

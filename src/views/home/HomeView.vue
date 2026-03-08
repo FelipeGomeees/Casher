@@ -59,7 +59,7 @@
         </CoreSurfaceStack>
         <CoreSkeleton height="220px" v-else/>
     </CoreSection>
-    <CoreSection label="Ultimos Gastos" linkLabel="Ver mais">
+    <CoreSection label="Ultimos Gastos" linkLabel="Ver mais" to="/extrato">
         <div v-if="!movimentacaoStore.loading">
             <CoreList :items="listItems" v-slot="{ item }">
                 <ItemExtrato :item="item"/>
