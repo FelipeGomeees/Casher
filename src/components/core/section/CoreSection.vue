@@ -1,28 +1,43 @@
 <script setup lang="ts">
-    import { ArrowRightIcon } from '@heroicons/vue/16/solid';
-    import { RouterLink } from 'vue-router';
+import { ArrowRightIcon } from '@heroicons/vue/16/solid'
+import type { Component } from 'vue';
+import { RouterLink } from 'vue-router'
 
-    const props = defineProps<{
-        label?: string,
-        linkLabel?: string,
-    }>()
+const props = withDefaults(defineProps<{
+  label?: string
+  linkLabel?: string
+  to?: string
+  linkComponent?: Component | string,
+}>(), {
+  linkComponent: RouterLink
+})
+
+const LinkComponent = props.linkComponent
 </script>
 
 <template>
     <section class="section">
-        <div class="section__label">
-            <b>{{props.label}}</b>
-            
-            <RouterLink to="/extrato" class="section__label-link">
-                <span>{{props.linkLabel}}</span>
-                <ArrowRightIcon class="section__icon"
-                v-if="props.linkLabel"/>
-            </RouterLink>
-        </div>
-        <div class="section__content">
-            <slot>
-            </slot>
-        </div>
+    <div class="section__label">
+        <b>{{ props.label }}</b>
+
+        <component
+        :is="LinkComponent"
+        v-bind="LinkComponent === 'a' ? { href: props.to } : { to: props.to }"
+        class="section__label-link"
+        >
+        <span>{{ props.linkLabel }}</span>
+
+        <ArrowRightIcon
+            v-if="props.linkLabel"
+            class="section__icon"
+        />
+        </component>
+
+    </div>
+
+    <div class="section__content">
+        <slot />
+    </div>
     </section>
 </template>
 

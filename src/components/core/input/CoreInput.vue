@@ -6,7 +6,7 @@ const model = defineModel<string>({ required: true })
 const props = defineProps<{
   label?: string
   error?: string
-  type?: string
+  type?: undefined | 'number' | 'password'
 }>()
 
 const attrs = useAttrs()
