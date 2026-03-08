@@ -4,14 +4,14 @@
 
 
     import { computed, onMounted, ref } from 'vue';
-    import { useMovimentacaoStore } from '@/stores/movimentacao';
-    import { FunnelIcon } from '@heroicons/vue/24/outline';
+    import { useMovimentacaoStore } from '@/stores/movimentacao/movimentacao';
+    import { FunnelIcon, PlusIcon } from '@heroicons/vue/24/outline';
 
     import ExtratoHeader from './ExtratoHeader.vue';
 
     import ItemExtrato, { type ListItemExtrato } 
       from '@/components/app/ItemExtrato.vue'
-import { getCategoryIcon } from '@/utils/categoryIcon';
+    import { getCategoryIcon  } from '@/utils/categoryIcon';
   
     const movimentacaoStore = useMovimentacaoStore()
 
@@ -88,13 +88,12 @@ import { getCategoryIcon } from '@/utils/categoryIcon';
                 >
                     <CoreSection :label="date">
                         <CoreList :items="items" v-slot="{ item }">
-                            <RouterLink to="/movimentacao">
-                                <ItemExtrato :item="item"/>
-                            </RouterLink>
+                            <ItemExtrato :item="item"/>
                         </CoreList>
                     </CoreSection>
                 </div>
             </CoreSection>
+            <CoreIconButton :icon="PlusIcon" class="extrato-view__add-button"/>
         </template>
     </LayoutPage>
 </template>
@@ -108,5 +107,11 @@ import { getCategoryIcon } from '@/utils/categoryIcon';
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    .extrato-view__add-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: var(--color-secondary);
     }
 </style>

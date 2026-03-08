@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import { computed, type Component } from 'vue';
+import { RouterLink } from 'vue-router';
 
     export type ListItemExtrato  = {
         title?: string,
@@ -23,12 +24,12 @@
         }).format(props.item.value ?? 0)
     )
 </script>
-
 <template>
-    <div class="item-extrato__container">
+    <RouterLink class="item-extrato__container" to="/extrato/movimentacao">
         <div class="item-extrato__icon-container">
             <component
                 class="item-extrato__icon"
+                :class="{ 'positive-bg': isPositive }"
                 :is="props.item.icon"
                 v-if="props.item.icon"
             />
@@ -36,12 +37,12 @@
 
         <div class="item-extrato__content">
             <span class="item-extrato__content-header">
-                <b>{{props.item.title ?? ''}}</b>
+                <span><b>{{props.item.title ?? ''}}</b></span>
                 <p :class="{ 'positive': isPositive }">{{formattedValue ?? ''}}</p>
             </span>
             <p>{{props.item.description ?? ''}}</p>
         </div>
-    </div>
+    </RouterLink>
 </template>
 
 <style scoped>
@@ -102,6 +103,10 @@
     }
 
     .positive {
-        color: var(--color-primary);
+        color: var(--color-cyan-500);
+    }
+
+    .positive-bg {
+        background-color: var(--color-cyan-300);
     }
 </style>
