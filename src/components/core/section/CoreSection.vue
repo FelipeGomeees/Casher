@@ -36,7 +36,7 @@
   .section__label-link {
       display: inline-flex;
       align-items: center;
-      gap: var(--gap-md);
+      gap: var(--gap-sx);
       white-space: nowrap;
       border-bottom: var(--border-width-lg) solid var(--border-color);
   }
