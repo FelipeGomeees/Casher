@@ -1,19 +1,18 @@
-import { ref } from 'vue'
-
 export function useStaleCache(ttl: number) {
-  const lastFetch = ref<number | null>(null)
+  const cache = new Map<string, number>()
 
-  function isStale() {
-    if (!lastFetch.value) return true
-    return Date.now() - lastFetch.value > ttl
+  function isStale(key: string) {
+    const lastFetch = cache.get(key)
+    if (!lastFetch) return true
+    return Date.now() - lastFetch > ttl
   }
 
-  function markFresh() {
-    lastFetch.value = Date.now()
+  function markFresh(key: string) {
+    cache.set(key, Date.now())
   }
 
-  function invalidate() {
-    lastFetch.value = null
+  function invalidate(key: string) {
+    cache.delete(key)
   }
 
   return {

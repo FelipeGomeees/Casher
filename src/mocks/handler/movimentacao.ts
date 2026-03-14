@@ -53,5 +53,21 @@ export const movimentacaoHandlers = [
         })
       }
     return HttpResponse.json(data);
+  }),
+
+    http.get('/api/extrato/:id', async ({ params }) => {
+    await new Promise(resolve => setTimeout(resolve, 500))
+
+    const { id } = params
+
+    const movimentacao = MovimentacaoMockData.find(
+      item => item.id === id
+    )
+
+    if (!movimentacao) {
+      return new HttpResponse(null, { status: 404 })
+    }
+
+    return HttpResponse.json(movimentacao)
   })
 ]

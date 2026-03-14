@@ -15,6 +15,8 @@
     const movimentacaoStore = useMovimentacaoStore()
 
     const isActiveDialogMovimentacao = ref(false);
+    const isActiveDialogFilter = ref(false);
+
     const currentFilter = ref<string>('recentes');
 
     const formMovimentacao = ref();
@@ -50,6 +52,7 @@
         }
 
         grouped[formattedDate].push({
+          id: item.id,
           title: item.local.toUpperCase(),
           value: item.valor,
           description: `${item.metodoPagamento} • ${item.data}`,
@@ -61,7 +64,11 @@
     })
 
     const handleFilterButtonClick = async () => {
-        
+        isActiveDialogFilter.value = !isActiveDialogFilter.value;
+    }
+
+    const handleFilterSubmit = async () => {
+
     }
 
     const handleAddButtonClick = async () => {
@@ -137,6 +144,25 @@
                     :icon="ArrowRightCircleIcon"
                     @click="handleMovimentacaoSubmit('close')">
                         Salvar e Voltar
+                    </CoreButton>
+                </template>
+            </CoreDialog>
+            <CoreDialog v-model="isActiveDialogFilter">
+                <template #header>
+                    <h3>
+                        Filtrar Extrato
+                    </h3>
+                </template>
+                <template #content> 
+
+                </template>
+                <template #actions>
+                    <CoreButton
+                    type="submit"
+                    variant="primary"
+                    :icon="ArrowRightCircleIcon"
+                    @click="handleFilterSubmit()">
+                        Salvar
                     </CoreButton>
                 </template>
             </CoreDialog>

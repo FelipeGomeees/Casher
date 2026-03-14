@@ -3,6 +3,7 @@
     import { RouterLink } from 'vue-router';
 
     export type ListItemExtrato  = {
+        id: string | number,
         title?: string,
         value?: number,
         description?: string,
@@ -25,7 +26,10 @@
     )
 </script>
 <template>
-    <RouterLink class="item-extrato__container" to="/extrato/movimentacao">
+    <RouterLink class="item-extrato__container" :to="{
+            name: 'extrato.movimentacao',
+            params: { id: props.item.id }
+        }">
         <div class="item-extrato__icon-container">
             <component
                 class="item-extrato__icon"

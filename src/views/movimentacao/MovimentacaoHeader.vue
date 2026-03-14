@@ -1,8 +1,12 @@
 <script setup lang="ts">
-    import { CoreIconButton } from '@/components/core';
+    import { CoreIconButton, CoreSkeleton } from '@/components/core';
     import { ShoppingCartIcon } from '@heroicons/vue/24/outline';
     import { LayoutHeader } from '@/components/layout';
     import currencyFormat from '@/utils/currencyFormat';
+    import { useMovimentacaoStore } from '@/stores/movimentacao/movimentacao';
+
+    const movimentacaoStore = useMovimentacaoStore()
+
 </script>
 
 <template>
@@ -20,7 +24,10 @@
                 <div class="movimentacao-header__content">
                     <div>
                         <div>Estabelecimento</div>
-                        <h2>Junior Esfihas</h2>
+                        <h2 v-if="!movimentacaoStore.loading">
+                            {{movimentacaoStore.movimentacaoAtual?.local}}
+                        </h2>
+                        <CoreSkeleton v-else/>
                     </div>
                     <CoreIconButton 
                     :icon="ShoppingCartIcon" 
@@ -28,7 +35,8 @@
                     </CoreIconButton>
                 </div>
                 <div>Valor</div>
-                <h2>{{currencyFormat(6000)}}</h2>
+                <h2 v-if="!movimentacaoStore.loading">{{currencyFormat(movimentacaoStore.movimentacaoAtual?.valor ?? 0)}}</h2>
+                <CoreSkeleton v-else/>
             </div>
         </template>
     </LayoutHeader>

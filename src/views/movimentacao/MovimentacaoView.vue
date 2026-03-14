@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { CoreSection, CoreSurfaceStack } from '@/components/core';
+    import { CoreSection, CoreSkeleton, CoreSurfaceStack } from '@/components/core';
     import { LayoutPage } from '@/components/layout';
     
     import { useMovimentacaoStore } from '@/stores/movimentacao/movimentacao';
@@ -8,11 +8,15 @@
     import MovimentacaoHeader from './MovimentacaoHeader.vue';
     import CoreIconButton from '@/components/core/iconbutton/CoreIconButton.vue';
     import { CreditCardIcon, MapPinIcon, HomeModernIcon, TagIcon, CalendarIcon } from '@heroicons/vue/24/outline';
+    import { useRoute } from 'vue-router';
+
+    const route = useRoute();
   
     const movimentacaoStore = useMovimentacaoStore()
 
-    onMounted(() => {
-        movimentacaoStore.fetchMovimentacao()
+    onMounted(async () => {
+        const id = Number(route.params.id)
+        await movimentacaoStore.fetchMovimentacaoById(id);
     })
 </script>
 
@@ -28,7 +32,10 @@
                     <div>
                         <b>Pagamento</b>
                         <br/>
-                        <span>PIX • 255.255.255-07</span>
+                        <span v-if="!movimentacaoStore.loading">
+                            {{movimentacaoStore.movimentacaoAtual?.metodoPagamento}} • 255.255.255-07
+                        </span>
+                        <CoreSkeleton v-else/>
                     </div>
                 </CoreSurfaceStack>
             </CoreSection>
@@ -39,19 +46,51 @@
                     </div>
                     <div class="movimentacao-view__description-item">
                         <MapPinIcon class="movimentacao-view__description"/>
-                        Localização
+                        <div class="flex-between w-100">
+                            <div>
+                                Localização
+                            </div>
+                            <div v-if="!movimentacaoStore.loading">
+                                Tupã-SP
+                            </div>
+                            <CoreSkeleton v-else/>
+                        </div>
                     </div>
                     <div class="movimentacao-view__description-item">
                         <HomeModernIcon class="movimentacao-view__description"/>
-                        Estabelecimento
+                        <div class="flex-between w-100">
+                            <div>
+                                Estabelecimento 
+                            </div>
+                            <div v-if="!movimentacaoStore.loading">
+                                {{ movimentacaoStore.movimentacaoAtual?.local }}
+                            </div>
+                            <CoreSkeleton v-else/>
+                        </div>
                     </div>
                     <div class="movimentacao-view__description-item">
                         <TagIcon class="movimentacao-view__description"/>
-                        Categoria
+                        <div class="flex-between w-100">
+                            <div>
+                                Categoria 
+                            </div>
+                            <div v-if="!movimentacaoStore.loading">
+                                {{ movimentacaoStore.movimentacaoAtual?.categoria }}
+                            </div>
+                            <CoreSkeleton v-else/>
+                        </div>
                     </div>
                     <div class="movimentacao-view__description-item">
                         <CalendarIcon class="movimentacao-view__description"/>
-                        Recorrente
+                        <div class="flex-between w-100">
+                            <div>
+                                Recorrente
+                            </div>
+                            <div v-if="!movimentacaoStore.loading">
+                                {{ movimentacaoStore.movimentacaoAtual?.recorrente }}
+                            </div>
+                            <CoreSkeleton v-else/>
+                        </div>
                     </div>
                 </CoreSurfaceStack>
             </CoreSection>
@@ -80,5 +119,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .w-100 {
+        width: 100%;
     }
 </style>
